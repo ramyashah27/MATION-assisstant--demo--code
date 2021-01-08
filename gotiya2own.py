@@ -1,24 +1,27 @@
-import speech_recognition as s 
+import pyttsx3 #pip install pyttsx3
+import speech_recognition as sr #pip install speechRecognition
 import os
 import pyjokes
 import random
-import datetime
-from playsound import playsound
 import time
-import pyttsx3
+from playsound import playsound
+import datetime
+import time
 import cv2
 import webbrowser
 
 engine = pyttsx3.init('sapi5')
-
-voices= engine.getProperty('voices') #getting details of current voice
-
+voices = engine.getProperty('voices')
+# print(voices[1].id)
 engine.setProperty('voice', voices[1].id)
-def speak(audio):
 
-    engine.say(audio) 
+
+def speak(audio):
+    engine.say(audio)
     engine.runAndWait()
-def wishme():
+
+
+def wishMe():
     hour = int(datetime.datetime.now().hour)
     if hour>=0 and hour<12:
         speak("Good Morning!")
@@ -29,25 +32,32 @@ def wishme():
     else:
         speak("Good Evening!")  
 
-    speak("I am gotiya the OP bot how may i help U")
-if __name__ == "__main__":
-    wishme()
-    while True:
-        sr=s.Recognizer()
-        print("I AM LISTING,HOW MAY I HELP U please TELL")
-        with s.Microphone() as m:
-            audio=sr.listen(m)
-            query=sr.recognize_google(audio,language='eng-in')
-            print(query)
+    speak("I am MATION Sir. Please tell me how may I help you")       
 
-        # if "browser" or "browser" in query:
-        #     webbrowser.open('https://www.google.com/')
-        # elif "YouTube" in query:
-        #     webbrowser.open('https://www.youtube.com')
-        # else:
-        #     speak("cant reach it")
-        #     print('cant reach it')
-        if 'Discord' in query:
+def takeCommand():
+    #It takes microphone input from the user and returns string output
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing...")    
+        query = r.recognize_google(audio, language='en-in')
+        print(f"User said: {query}\n")
+
+    except Exception as e:
+        print(e)    
+        print("Say that again please...")  
+        return "None"
+    return query
+if __name__ == "__main__":
+    wishMe()
+    while True:
+        query = takeCommand().lower()
+        if 'discord' in query:
             print('opening discord for YOU')
             speak('opening discord for YOU')
             codepath= 'C:\\Users\\ADMIN\\Desktop\\ramya shah\\Discord.lnk'
@@ -61,7 +71,6 @@ if __name__ == "__main__":
             print(aclock)
             speak(aclock)
         if "camera" in query:
-
             cam = cv2.VideoCapture(0)
             while cam.isOpened():
                 ret, frame = cam.read() 
@@ -71,16 +80,13 @@ if __name__ == "__main__":
         if "music" in query:
             speak('NOW PLAYING dheeme dheeme FOR you')
             playsound('C:\\Users\\ADMIN\\Desktop\\python\\chapter 1\\Dheeme Dheeme.mp3')
-        if query==('Google'):
+        if "google" in query:
             speak("opening google for u")
-            webbrowser.open('https://www.google.com/')
-        # if "Remind" or "remind" in query:
-        #     speak('what u want to remind me please tell')
-        #     s.Microphone(query)
-        #     print(query)
-        #     with open('remind.txt',"w") as f:
-        #         f.write('queryremind')
-        #     with open('remind.txt') as re:   
-        #         reminder=re.read()
-        # if "what did i tell you" in query:
-        #     speak(reminder)
+            webbrowser.open('https://www.google.com/')    
+        elif "youtube" in query:
+            speak("OPENING YOTUBE FOR YOU")
+            webbrowser.open("https://www.youtube.com/")
+        elif "github" in query:
+            speak('github is OP opening it--> ')
+            print('-->')
+            webbrowser.open("https://www.github.com")
