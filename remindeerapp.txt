@@ -1,0 +1,14 @@
+that I have to do 1 maths exercise everydaythat I have to do 1.4 exercise of maths
+at (Sat Jan  9 13:03:22 2021) YOU TOLD TO REMIND ME: -->  that I don't want to bath
+ at (Sat Jan  9 13:05:47 2021) YOU TOLD TO REMIND ME: -->  who is idli sambar
+ at (Sat Jan  9 14:26:24 2021) YOU TOLD TO REMIND ME: -->  I have to do 1 maths exercise today
+
+
+
+
+
+
+ chrome://dino
+Runner.instance_.gameOver = ()=>{}
+ at (Sun Jan 10 14:31:30 2021) YOU TOLD TO REMIND ME: -->  that I have to do 11 maths exercise 2
+ at (Sun Jan 10 14:44:50 2021) YOU TOLD TO REMIND ME: -->  Ramya is a good boy
